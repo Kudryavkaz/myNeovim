@@ -1,0 +1,84 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+	{ "folke/lazy.nvim" },
+	-- 插件列表
+	-- 主题
+	{ "folke/tokyonight.nvim" },
+	{ "projekt0n/github-nvim-theme" },
+	-- 文件目录
+	{ "kyazdani42/nvim-tree.lua", dependencies = "kyazdani42/nvim-web-devicons" },
+	-- 上下栏
+	{ "akinsho/bufferline.nvim", dependencies = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" } },
+	{ "nvim-lualine/lualine.nvim", dependencies = { "kyazdani42/nvim-web-devicons" } },
+	{ "arkav/lualine-lsp-progress" },
+	-- 模糊查找
+	{ "nvim-telescope/telescope.nvim", version = "0.1.5", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "LinArcX/telescope-env.nvim" },
+	-- 开始界面
+	{ "glepnir/dashboard-nvim" },
+	-- 高亮
+	{ "ahmedkhalf/project.nvim" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	-- indent-blankline
+	{ "lukas-reineke/indent-blankline.nvim" },
+    -- 括号补全
+    { "windwp/nvim-autopairs" },
+    -- 高效移动
+    { "m4xshen/hardtime.nvim" },
+	-- LSP
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+	{ "neovim/nvim-lspconfig" },
+	-- 补全
+	-- 补全引擎
+	{ "hrsh7th/nvim-cmp" },
+	-- snippet 引擎
+	{ "hrsh7th/vim-vsnip" },
+	-- 补全源
+	{ "hrsh7th/cmp-vsnip" },
+	{ "hrsh7th/cmp-nvim-lsp" }, -- { name = nvim_lsp }
+	{ "hrsh7th/cmp-buffer" }, -- { name = 'buffer' }
+	{ "hrsh7th/cmp-path" }, -- { name = 'path' }
+	{ "hrsh7th/cmp-cmdline" }, -- { name = 'cmdline' }
+	-- 常见编程语言代码段
+	{ "rafamadriz/friendly-snippets" },
+	-- 格式化
+	{ "nvimtools/none-ls.nvim" },
+	-- UI
+	{ "onsails/lspkind-nvim" },
+	{ "kkharji/lspsaga.nvim" },
+	-- json增强
+	{ "b0o/schemastore.nvim" },
+	-- typescript增强
+	{ "jose-elias-alvarez/nvim-lsp-ts-utils", dependencies = "nvim-lua/plenary.nvim" },
+	-- rust增强
+	{ "simrat39/rust-tools.nvim" },
+	-- DAP
+	{ "mfussenegger/nvim-dap" },
+	{ "theHamsta/nvim-dap-virtual-text" },
+	{ "rcarriga/nvim-dap-ui" },
+})
+
+-- 加载插件
+require("plugin-config.nvim-tree")
+require("plugin-config.bufferline")
+require("plugin-config.lualine")
+require("plugin-config.telescope")
+require("plugin-config.dashboard")
+require("plugin-config.project")
+require("plugin-config.nvim-treesitter")
+require("plugin-config.indent-blankline")
+require("plugin-config.nvim-autopairs")
+-- require("plugin-config.hardtime")
