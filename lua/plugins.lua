@@ -69,6 +69,7 @@ require("lazy").setup({
 	{ "mfussenegger/nvim-dap" },
 	{ "theHamsta/nvim-dap-virtual-text" },
 	{ "rcarriga/nvim-dap-ui" },
+    { "mfussenegger/nvim-dap-python" },
 })
 
 -- 加载插件

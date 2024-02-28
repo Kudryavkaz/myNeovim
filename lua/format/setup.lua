@@ -12,15 +12,17 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- Formatting ---------------------
-		-- shfmt
+		-- shfmt - bash
 		formatting.shfmt,
-		-- stylua
+		-- stylua - lua
 		formatting.stylua,
-		-- clangd
+		-- clangd - c/c++
 		formatting.clang_format,
-		-- rustfmt
+		-- rustfmt - rust
 		formatting.rustfmt,
-		-- prettier
+		-- black - python
+		formatting.black.with({ extra_args = { "--fast" } }),
+		-- prettier - html/json/css/javascript/typescript/vue
 		formatting.prettier.with({
 			filetypes = {
 				"javascript",

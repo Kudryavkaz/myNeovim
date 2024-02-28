@@ -2,7 +2,8 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 -- 本地变量
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
+-- local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
 -- 基本快捷键
@@ -44,6 +45,7 @@ map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
 map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
+map("t", "<A-q>", [[ <C-\><C-N><cmd>bdelete! %<CR> ]], opt)
 
 -- visual模式下缩进代码
 map("v", "<", "<gv", opt)
@@ -105,11 +107,11 @@ pluginKeys.mapTsLSP = function(mapbuf)
 end
 
 -- 调试快捷键
--- map({"i", "n", "v"}, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
--- map({"i", "n", "v"}, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
--- map({"i", "n", "v"}, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
--- map({"i", "n", "v"}, "<F12>", "<cmd>lua require'dap'.step_over()<CR>", opt)
--- map({"i", "n", "v"}, "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
+map({"i", "n", "v"}, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
+map({"i", "n", "v"}, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
+map({"i", "n", "v"}, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
+map({"i", "n", "v"}, "<F12>", "<cmd>lua require'dap'.step_over()<CR>", opt)
+map({"i", "n", "v"}, "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
 
 --补全快捷键
 -- nvim-cmp 自动补全

@@ -61,6 +61,7 @@ local servers = {
 	jsonls = require("lsp.config.json"),
 	tsserver = require("lsp.config.ts"),
 	rust_analyzer = require("lsp.config.rust"),
+    pyright = require("lsp.config.python")
 }
 
 for name, config in pairs(servers) do
