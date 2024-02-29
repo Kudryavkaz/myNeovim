@@ -1,6 +1,6 @@
 -- 设置leaderkey
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- 本地变量
 local map = vim.keymap.set
 -- local map = vim.api.nvim_set_keymap
@@ -10,6 +10,8 @@ local opt = { noremap = true, silent = true }
 map("n", "<C-a>", "ggVG", opt)
 
 -- 窗口管理
+-- 回到Dashboard
+map("n", "<leader>d", ":Dashboard<CR>", opt)
 -- 取消默认功能
 map("n", "s", "", opt)
 map("i", "<C-i>", "", opt)
@@ -38,14 +40,15 @@ map("n", "<C-Up>", ":resize -2<CR>", opt)
 -- 等比例
 map("n", "s=", "<C-w>=", opt)
 -- Terminal相关
-map("n", "<space>t", ":sp | terminal<CR>", opt)
-map("n", "<space>vt", ":vsp | terminal<CR>", opt)
+map("n", "<leader>t", ":sp | terminal<CR>", opt)
+map("n", "<leader>vt", ":vsp | terminal<CR>", opt)
 map("t", "<Esc>", "<C-\\><C-n>", opt)
 map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
 map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 map("t", "<A-q>", [[ <C-\><C-N><cmd>bdelete! %<CR> ]], opt)
+map("n", "<A-q>", [[ <cmd>bdelete! %<CR> ]], opt)
 
 -- visual模式下缩进代码
 map("v", "<", "<gv", opt)
@@ -68,17 +71,19 @@ map("v", "p", '"_dP', opt)
 map("i", "<C-h>", "<ESC>I", opt)
 map("i", "<C-l>", "<ESC>A", opt)
 
+-- 复制当前文件路径
+map("n", "<leader>pwd", ":!pwd <Bar> wl-copy<CR>", opt)
 -- 插件快捷键
 local pluginKeys = {}
 
 -- LSP快捷键
 pluginKeys.mapLSP = function(mapbuf)
 	-- rename
-	mapbuf("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
-	mapbuf("n", "<space>rn", "<cmd>Lspsaga rename<CR>", opt)
+	mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+	mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
 	-- code action
-	mapbuf("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-	mapbuf("n", "<space>ca", "<cmd>Lspsaga code_action<CR>", opt)
+	mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+	mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
 	-- go xx
 	mapbuf("n", "gd", "<cmd>Lspsaga preview_definition<CR>", opt)
 	mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
@@ -87,16 +92,16 @@ pluginKeys.mapLSP = function(mapbuf)
 	mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
 	mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
 	mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
-	mapbuf("n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+	mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
 	-- 未用
 	-- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
 	-- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
-	-- mapbuf('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+	-- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
 	-- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
-	-- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
-	-- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
-	-- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
-	-- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+	-- mapbuf('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+	-- mapbuf('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+	-- mapbuf('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+	-- mapbuf('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
 end
 
 -- typescript 快捷键
@@ -107,11 +112,19 @@ pluginKeys.mapTsLSP = function(mapbuf)
 end
 
 -- 调试快捷键
-map({"i", "n", "v"}, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
-map({"i", "n", "v"}, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
-map({"i", "n", "v"}, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
-map({"i", "n", "v"}, "<F12>", "<cmd>lua require'dap'.step_over()<CR>", opt)
-map({"i", "n", "v"}, "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
+map({ "i", "n", "v" }, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
+map({ "i", "n", "v" }, "<F8>", "<cmd>lua require'dap'.terminate() require'dapui'.close()<CR>", opt)
+map({ "i", "n", "v" }, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
+map({ "i", "n", "v" }, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
+map({ "i", "n", "v" }, "<F12>", "<cmd>lua require'dap'.step_out()<CR>", opt)
+map({ "i", "n", "v" }, "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
+
+-- Copilot
+map("i", "<C-A>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
 
 --补全快捷键
 -- nvim-cmp 自动补全
@@ -189,9 +202,9 @@ map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 -- 关闭
 --"moll/vim-bbye"
 map("n", "<C-w>", ":Bdelete!<CR>", opt)
-map("n", "<space>bl", ":BufferLineCloseRight<CR>", opt)
-map("n", "<space>bh", ":BufferLineCloseLeft<CR>", opt)
-map("n", "<space>bc", ":BufferLinePickClose<CR>", opt)
+map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
+map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 
 -- Telescope
 -- 查找文件

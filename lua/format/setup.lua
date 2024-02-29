@@ -19,7 +19,7 @@ null_ls.setup({
 		-- clangd - c/c++
 		formatting.clang_format,
 		-- rustfmt - rust
-		formatting.rustfmt,
+		-- formatting.rustfmt,
 		-- black - python
 		formatting.black.with({ extra_args = { "--fast" } }),
 		-- prettier - html/json/css/javascript/typescript/vue

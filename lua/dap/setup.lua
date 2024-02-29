@@ -33,11 +33,10 @@ dapui.setup({
 		{
 			elements = {
 				-- Elements can be strings or table with id and size keys.
-				{ id = "scopes", size = 0.5 },
+				{ id = "scopes", size = 0.25 },
 				"stacks",
 				"watches",
 				"breakpoints",
-				"repl",
 			},
 			size = 0.25, -- 25 columns
 			position = "left",
@@ -54,7 +53,7 @@ dapui.setup({
 	floating = {
 		max_height = nil, -- These can be integers or a float between 0 and 1.
 		max_width = nil, -- Floats will be treated as percentage of your screen.
-		border = "rounded", -- Border style. Can be "single", "double" or "rounded"
+		border = "single", -- Border style. Can be "single", "double" or "rounded"
 		mappings = {
 			close = { "q", "<Esc>" },
 		},

@@ -6,6 +6,8 @@ require("plugins")
 require("keybindings")
 -- 主题配置
 require("colorscheme")
+-- 自动设置
+require("autocmds")
 -- 内置LSP
 require("lsp.setup")
 -- 代码补全

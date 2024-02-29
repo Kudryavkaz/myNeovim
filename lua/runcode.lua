@@ -1,5 +1,5 @@
 local opt = { noremap = true, silent = true }
-local term = "<cmd>sp | terminal<CR><cmd>resize -8<CR>i"
+local term = "<cmd>sp | terminal<CR><cmd>resize -8<CR>"
 -- python
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
         local fileName = vim.api.nvim_buf_get_name(0)
         local fileBasename = string.gsub(fileName, ".cpp", "")
         local run = term .. fileBasename .. "<CR>"
-		vim.api.nvim_buf_set_keymap(0, "n", "<F10>", run, opt)
+		vim.api.nvim_buf_set_keymap(0, "n", "<space><F5>", run, opt)
 	end,
 })
 
