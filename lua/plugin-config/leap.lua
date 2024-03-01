@@ -4,6 +4,5 @@ if not status then
 	return
 end
 
-leap.setup({
-
-})
+leap.setup({})
+leap.create_default_mappings()

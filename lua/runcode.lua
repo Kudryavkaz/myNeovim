@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
         local run = term .. "python " .. vim.api.nvim_buf_get_name(0) .. "<CR>"
-		vim.api.nvim_buf_set_keymap(0, "n", "<C-F5>", run, opt)
+		vim.api.nvim_buf_set_keymap(0, "n", "<leader><F5>", run, opt)
 	end,
 })
 
@@ -14,12 +14,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "cpp",
 	callback = function()
         -- 编译 space+b
-		vim.api.nvim_buf_set_keymap(0, "n", "<space>b", "<cmd>!g++ -g % -o %:r<CR>", opt)
+		vim.api.nvim_buf_set_keymap(0, "n", "<leader>b", "<cmd>!g++ -g % -o %:r<CR>", opt)
         -- 运行 F5
         local fileName = vim.api.nvim_buf_get_name(0)
         local fileBasename = string.gsub(fileName, ".cpp", "")
         local run = term .. fileBasename .. "<CR>"
-		vim.api.nvim_buf_set_keymap(0, "n", "<space><F5>", run, opt)
+		vim.api.nvim_buf_set_keymap(0, "n", "<leader><F5>", run, opt)
 	end,
 })
 

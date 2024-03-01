@@ -14,15 +14,13 @@ dap.configurations.cpp = {
 		program = "${fileDirname}/${fileBasenameNoExtension}",
 		cwd = "${workspaceFolder}",
 		stopAtEntry = true,
+		setupCommands = {
+			{
+				text = "-enable-pretty-printing",
+				description = "enable pretty printing",
+				ignoreFailures = true,
+			},
+		},
 	},
 }
-
-setupCommands = {
-	{
-		text = "-enable-pretty-printing",
-		description = "enable pretty printing",
-		ignoreFailures = false,
-	},
-}
-
 dap.configurations.c = dap.configurations.cpp

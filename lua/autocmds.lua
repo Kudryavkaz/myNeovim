@@ -38,3 +38,10 @@ autocmd({ "BufEnter" }, {
 		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 	end,
 })
+
+-- 自动保存
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+	callback = function()
+		vim.fn.execute("silent! write")
+	end,
+})
