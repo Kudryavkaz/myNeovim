@@ -1,5 +1,5 @@
 local opt = { noremap = true, silent = true }
-local term = "<cmd>sp | terminal<CR><cmd>resize -8<CR>"
+local term = "<cmd>sp | terminal<CR><cmd>resize -3<CR>"
 -- python
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
@@ -23,10 +23,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- 便捷关闭终端
+
+-- html
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "",
-    callback = function()
-        vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>q", opt)
-    end,
+	pattern = {"html"},
+	callback = function()
+        -- 预览
+        vim.api.nvim_buf_set_keymap(0, "n", "<leader><F5>", "<cmd>silent !xdg-open %<CR>", opt)
+	end,
 })

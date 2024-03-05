@@ -22,7 +22,7 @@ null_ls.setup({
 		-- formatting.rustfmt,
 		-- black - python
 		formatting.black.with({ extra_args = { "--fast" } }),
-		-- prettier - html/json/css/javascript/typescript/vue
+		-- prettier - json/css/javascript/typescript/vue
 		formatting.prettier.with({
 			filetypes = {
 				"javascript",
@@ -33,11 +33,10 @@ null_ls.setup({
 				"css",
 				"scss",
 				"less",
-				"html",
 				"json",
 				"yaml",
 				"graphql",
-				"python",
+                "html",
 				"markdown",
 			},
 			prefer_local = "node_modules/.bin",
