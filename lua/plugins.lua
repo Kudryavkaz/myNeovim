@@ -48,8 +48,6 @@ require("lazy").setup({
 	{ "wakatime/vim-wakatime", lazy = false },
 	-- Surround
 	{ "kylechui/nvim-surround" },
-    -- cph
-    { "p00f/cphelper.nvim" },
 	-- 代码注释
 	{ "numToStr/Comment.nvim" },
 	-- live-server
