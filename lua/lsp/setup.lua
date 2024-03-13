@@ -33,18 +33,14 @@ require("mason-lspconfig").setup({
 	-- 确保安装，根据需要填写
 	ensure_installed = {
 		"lua_ls",
+        "clangd",
 		"tsserver",
 		"tailwindcss",
 		"bashls",
-		"cssls",
-		"dockerls",
 		"emmet_ls",
 		"html",
 		"jsonls",
 		"pyright",
-		"rust_analyzer",
-		"taplo",
-		"yamlls",
 	},
 })
 
@@ -61,7 +57,9 @@ local servers = {
 	jsonls = require("lsp.config.json"),
 	tsserver = require("lsp.config.ts"),
 	rust_analyzer = require("lsp.config.rust"),
-    pyright = require("lsp.config.python")
+    pyright = require("lsp.config.python"),
+    bashls = require("lsp.config.bash"),
+    volar = require("lsp.config.vue")
 }
 
 for name, config in pairs(servers) do

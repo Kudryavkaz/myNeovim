@@ -1,6 +1,8 @@
 -- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = 'utf-8'
+-- 色彩
+vim.o.termguicolors = true
 -- jkhl 移动时光标周围保留30行
 vim.o.scrolloff = 10
 vim.o.sidescrolloff = 10

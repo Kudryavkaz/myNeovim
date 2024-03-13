@@ -9,16 +9,29 @@ local opts = {
 	-- 传入 tsserver 初始化参数
 	-- make inlay hints work
 	init_options = {
-		hostInfo = "neovim",
-		preferences = {
-			includeInlayParameterNameHints = "all",
-			includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-			includeInlayFunctionParameterTypeHints = true,
-			includeInlayVariableTypeHints = true,
-			includeInlayPropertyDeclarationTypeHints = true,
-			includeInlayFunctionLikeReturnTypeHints = true,
-			includeInlayEnumMemberValueHints = true,
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = "/usr/lib/node_modules/@vue/typescript-plugin",
+				languages = { "javascript", "typescript", "vue" },
+			},
 		},
+		-- hostInfo = "neovim",
+		-- preferences = {
+		-- 	includeInlayParameterNameHints = "all",
+		-- 	includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+		-- 	includeInlayFunctionParameterTypeHints = true,
+		-- 	includeInlayVariableTypeHints = true,
+		-- 	includeInlayPropertyDeclarationTypeHints = true,
+		-- 	includeInlayFunctionLikeReturnTypeHints = true,
+		-- 	includeInlayEnumMemberValueHints = true,
+		-- },
+	},
+
+	filetypes = {
+		"javascript",
+		"typescript",
+		"vue",
 	},
 
 	on_attach = function(client, bufnr)

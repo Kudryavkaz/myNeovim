@@ -25,7 +25,7 @@ treesitter.setup({
     },
     -- 启用代码缩进模块 (=)
     indent = {
-        enable = true,
+        enable = false,
     },
 })
 

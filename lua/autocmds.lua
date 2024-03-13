@@ -45,3 +45,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 		vim.fn.execute("silent! write")
 	end,
 })
+
+-- 关闭copilot
+-- vim.api.nvim_create_autocmd({"BufEnter"}, {
+--     pattern = "*",
+--     command = "Copilot disable",
+-- })

@@ -17,6 +17,8 @@ require("lazy").setup({
 	-- 主题
 	{ "folke/tokyonight.nvim" },
 	{ "projekt0n/github-nvim-theme" },
+	-- 颜色
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
 	-- 文件目录
 	{ "kyazdani42/nvim-tree.lua", dependencies = "kyazdani42/nvim-web-devicons" },
 	-- 上下栏
@@ -30,7 +32,7 @@ require("lazy").setup({
 	{ "glepnir/dashboard-nvim" },
 	-- 高亮
 	{ "ahmedkhalf/project.nvim" },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter" },
 	-- indent-blankline
 	{ "lukas-reineke/indent-blankline.nvim" },
 	-- which key
@@ -40,10 +42,9 @@ require("lazy").setup({
 	-- 括号补全
 	{ "windwp/nvim-autopairs" },
 	-- 高效移动
-	{ "m4xshen/hardtime.nvim" },
 	{ "ggandor/leap.nvim" },
 	-- Copilot
-	{ "github/copilot.vim" },
+	-- { "github/copilot.vim" },
 	-- Wakatime
 	{ "wakatime/vim-wakatime", lazy = false },
 	-- Surround
@@ -110,4 +111,4 @@ require("plugin-config.comment")
 require("plugin-config.nvim-notify")
 require("plugin-config.copilot")
 require("plugin-config.live-server")
--- require("plugin-config.hardtime")
+require("plugin-config.gruvbox")

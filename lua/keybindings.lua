@@ -10,6 +10,8 @@ local opt = { noremap = true, silent = true }
 map("n", "<C-a>", "ggVG", opt)
 -- 在浏览器中打开
 map("n", "<leader>ob", ":silent !xdg-open %<CR>", opt)
+-- 在vscode中打开
+map("n", "<leader>ov", ":silent !code %<CR>", opt)
 -- 窗口管理
 -- 回到Dashboard
 map("n", "<leader>h", ":Dashboard<CR>", opt)
@@ -107,6 +109,8 @@ pluginKeys.mapLSP = function(mapbuf)
 	-- mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt)
 end
 
+map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opt)
+
 -- typescript 快捷键
 pluginKeys.mapTsLSP = function(mapbuf)
 	mapbuf("n", "gs", ":TSLspOrganize<CR>", opt)
@@ -169,13 +173,13 @@ pluginKeys.cmp = function(cmp)
 			if vim.fn["vsnip#available"](1) == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
 			end
-		end, { "i", "s" }),
+		end, { "s" }),
 		-- 自定义代码段跳转到上一个参数
 		["<C-h>"] = cmp.mapping(function()
 			if vim.fn["vsnip#jumpable"](-1) == 1 then
 				feedkey("<Plug>(vsnip-jump-prev)", "")
 			end
-		end, { "i", "s" }),
+		end, { "s" }),
 
 		-- Super Tab
 		["<Tab>"] = cmp.mapping(function(fallback)
@@ -217,6 +221,8 @@ map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 map("n", "<C-p>", ":Telescope find_files<CR>", opt)
 -- 全局搜索
 map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+-- 显示隐藏文件
+map("n", "<leader><C-h>", ":Telescope find_files hidden=true<CR>", opt)
 -- Telescope 列表中 插入模式快捷键
 pluginKeys.telescopeList = {
 	i = {
